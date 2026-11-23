@@ -222,6 +222,36 @@ function closeCheckout() {
     modal.setAttribute("aria-hidden", "true");
 }
 
+let checkoutReturnFocus = null;
+
+function showCheckoutDialog() {
+    const dialog = document.getElementById("checkout-modal");
+
+    checkoutReturnFocus = document.activeElement;
+
+    if (!dialog.open) {
+        dialog.showModal();
+    }
+
+    document.getElementById("full-name").focus();
+}
+
+function hideCheckoutDialog() {
+    const dialog = document.getElementById("checkout-modal");
+
+    if (dialog.open) {
+        dialog.close();
+    }
+
+    if (checkoutReturnFocus &&
+        checkoutReturnFocus.isConnected &&
+        !checkoutReturnFocus.closest("[inert]")) {
+        checkoutReturnFocus.focus();
+    } else {
+        document.getElementById("header-cart-btn").focus();
+    }
+}
+
 // Render checkout summary
 function renderCheckoutSummary() {
     const summaryList = document.getElementById("checkout-summary");
