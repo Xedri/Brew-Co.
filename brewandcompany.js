@@ -2,24 +2,24 @@ let cart = [];
 
 // Open shopping cart
 function openCart() {
-    document.getElementById("cart-drawer").classList.add("open");
-    document.getElementById("cart-backdrop").classList.add("open");
+  const cart = document.getElementById("cart-drawer");
 
-    document.getElementById("cart-drawer").setAttribute(
-        "aria-hidden",
-        "false"
-    );
+  cart.removeAttribute("inert");
+  cart.setAttribute("aria-hidden", "false");
+
+  // Keep your existing code that opens the cart.
 }
 
-// Close shopping cart
 function closeCart() {
-    document.getElementById("cart-drawer").classList.remove("open");
-    document.getElementById("cart-backdrop").classList.remove("open");
+  const cart = document.getElementById("cart-drawer");
 
-    document.getElementById("cart-drawer").setAttribute(
-        "aria-hidden",
-        "true"
-    );
+  // Move focus outside the cart before hiding it.
+  document.getElementById("header-cart-btn").focus();
+
+  cart.setAttribute("inert", "");
+  cart.setAttribute("aria-hidden", "true");
+
+  // Keep your existing code that closes the cart.
 }
 
 // Animate cart button
