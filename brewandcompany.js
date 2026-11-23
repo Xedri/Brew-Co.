@@ -200,26 +200,42 @@ function renderCart() {
 }
 
 // Open checkout
+// Open checkout
 function openCheckout() {
     if (cart.length === 0) {
         alert("Please add an item to your order first.");
         return;
     }
 
+    // Update the order summary
     renderCheckoutSummary();
+
+    // Close the shopping cart
     closeCart();
 
+    // Get the checkout dialog
     const modal = document.getElementById("checkout-modal");
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
+
+    // Open the native dialog
+    if (!modal.open) {
+        modal.showModal();
+    }
+
+    // Move focus to the first input
+    document.getElementById("full-name").focus();
 }
 
 // Close checkout
 function closeCheckout() {
     const modal = document.getElementById("checkout-modal");
 
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden", "true");
+    // Close the native dialog
+    if (modal.open) {
+        modal.close();
+    }
+
+    // Return focus to the basket button
+    document.getElementById("header-cart-btn").focus();
 }
 
 let checkoutReturnFocus = null;
