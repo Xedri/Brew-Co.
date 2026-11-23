@@ -413,39 +413,40 @@ nav {
 }
 
 /* Checkout Modal */
-.checkout-modal {
+
+dialog.checkout-modal {
     position: fixed;
-    inset: 0;
-    background-color: rgba(0,0,0,0.65);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
+    margin: auto;
+
+    width: min(92vw, 480px);
+    max-width: 480px;
+    max-height: 90vh;
+
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+
+    background-color: #ffffff;
+    color: #2d211b;
+
+    overflow-y: auto;
+    box-sizing: border-box;
     z-index: 300;
 }
 
-.checkout-modal.open {
-    display: flex;
+/* Display the dialog when opened */
+dialog.checkout-modal[open] {
+    display: block;
 }
 
-dialog.checkout-modal {
-    border: none;
-    padding: 0;
-    border-radius: 16px;
-    max-width: min(92vw, 480px);
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-/* Native backdrop */
-dialog.checkout-modal::backdrop {
-    background: rgba(0, 0, 0, 0.65);
-}
-
-/* Ensure closed dialogs remain hidden */
+/* Keep the dialog hidden when closed */
 dialog.checkout-modal:not([open]) {
     display: none;
+}
+
+/* Dark background behind the dialog */
+dialog.checkout-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.65);
 }
 
 .checkout-box {
