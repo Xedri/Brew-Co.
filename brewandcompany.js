@@ -2,24 +2,36 @@ let cart = [];
 
 // Open shopping cart
 function openCart() {
-  const cart = document.getElementById("cart-drawer");
+    const cartDrawer = document.getElementById("cart-drawer");
+    const cartBackdrop = document.getElementById("cart-backdrop");
 
-  cart.removeAttribute("inert");
-  cart.setAttribute("aria-hidden", "false");
+    // Make the drawer interactive
+    cartDrawer.removeAttribute("inert");
+    cartDrawer.setAttribute("aria-hidden", "false");
 
-  // Keep your existing code that opens the cart.
+    // Open the cart and backdrop
+    cartDrawer.classList.add("open");
+    cartBackdrop.classList.add("open");
+
+    // Move keyboard focus into the cart
+    cartDrawer.querySelector(".close-cart-btn").focus();
 }
 
+// Close shopping cart
 function closeCart() {
-  const cart = document.getElementById("cart-drawer");
+    const cartDrawer = document.getElementById("cart-drawer");
+    const cartBackdrop = document.getElementById("cart-backdrop");
 
-  // Move focus outside the cart before hiding it.
-  document.getElementById("header-cart-btn").focus();
+    // Return focus to the basket button
+    document.getElementById("header-cart-btn").focus();
 
-  cart.setAttribute("inert", "");
-  cart.setAttribute("aria-hidden", "true");
+    // Close the cart and backdrop
+    cartDrawer.classList.remove("open");
+    cartBackdrop.classList.remove("open");
 
-  // Keep your existing code that closes the cart.
+    // Prevent interaction with the closed cart
+    cartDrawer.setAttribute("inert", "");
+    cartDrawer.setAttribute("aria-hidden", "true");
 }
 
 // Animate cart button
