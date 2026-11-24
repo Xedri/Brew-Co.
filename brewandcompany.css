@@ -28,8 +28,8 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #faf6f2;
-    color: #2f1d18;
+    background-color: var(--color-background);
+    color: var(--color-text);
     line-height: 1.6;
 }
 
@@ -64,7 +64,7 @@ nav {
 }
 
 .nav-links a {
-    color: #f5ebe0;
+    color: var(--color-text-light);
     text-decoration: none;
     font-weight: 500;
 }
@@ -81,8 +81,8 @@ nav {
     justify-content: center;
     width: 46px;
     height: 46px;
-    background-color: #c68b59;
-    color: #fff;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
     border: 2px solid rgba(255,255,255,0.2);
     border-radius: 50%;
     cursor: pointer;
@@ -194,6 +194,7 @@ nav {
 /* Menu */
 .menu-section {
     padding: 3.5rem 8%;
+    background-color: var(--color-background);
 }
 
 .menu-section h2 {
@@ -210,6 +211,7 @@ nav {
 
 .menu-card {
     background-color: var(--color-surface);
+    color: var(--color-text);
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -249,8 +251,8 @@ nav {
 }
 
 .price-row button {
-    background-color: #3b231b;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     border: none;
     padding: 0.55rem 0.9rem;
     border-radius: 6px;
@@ -285,7 +287,8 @@ nav {
     width: 100%;
     max-width: 400px;
     height: 100vh;
-    background-color: #fff;
+    background-color: var(--color-surface);
+    color: var(--color-text);
     box-shadow: -6px 0 24px rgba(0,0,0,0.18);
     transition: right 0.3s ease;
     z-index: 201;
@@ -413,8 +416,8 @@ nav {
     width: 100%;
     margin-top: 1.5rem;
     padding: 0.9rem;
-    background-color: #c68b59;
-    color: #fff;
+    background-color: var(--color-accent);
+    color: var(--color-text);
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -562,7 +565,7 @@ dialog.checkout-modal::backdrop {
 .about-section {
     text-align: center;
     padding: 3rem 8%;
-    background-color: #f3e9df;
+    background-color: var(--color-background);
     margin-top: 1rem;
 }
 
