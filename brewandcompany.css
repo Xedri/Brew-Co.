@@ -1,8 +1,19 @@
 :root {
+    /* Brand Colors */
     --color-primary: #38251b;
-    --color-accent: #d8e2b1;
+    --color-secondary: #6b4b3a;
+    --color-accent: #c68b59;
+
+    /* Background Colors */
     --color-background: #f3e8da;
+    --color-surface: #ffffff;
+
+    /* Text Colors */
     --color-text: #38251b;
+    --color-text-light: #ffffff;
+
+    /* Borders */
+    --color-border: #dfcbb8;
 }
 
 * {
@@ -24,8 +35,8 @@ body {
 
 /* Header */
 header {
-    background-color: #3b231b;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     padding: 1rem 8%;
     position: sticky;
     top: 0;
@@ -41,7 +52,7 @@ nav {
 }
 
 .brand {
-    color: #fff;
+    color: var(--color-text-light);
     text-decoration: none;
     font-size: 1.4rem;
     font-weight: bold;
@@ -141,7 +152,7 @@ nav {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #fff;
+    color: var(--color-text);
 }
 
 .hero-content {
@@ -198,7 +209,7 @@ nav {
 }
 
 .menu-card {
-    background-color: #fff;
+    background-color: var(--color-surface);
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -222,7 +233,7 @@ nav {
 
 .menu-card p {
     font-size: 0.92rem;
-    color: #63483f;
+    color: var(--color-text);
     margin-bottom: 1rem;
 }
 
@@ -560,8 +571,8 @@ dialog.checkout-modal::backdrop {
 }
 
 footer {
-    background-color: #3b231b;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     text-align: center;
     padding: 1.25rem;
 }
@@ -577,7 +588,7 @@ footer {
         font-size: 2rem;
     }
 
-    .nav-links {
+    . {
         gap: 0.8rem;
     }
 }
