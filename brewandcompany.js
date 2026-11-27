@@ -1,5 +1,141 @@
 let cart = [];
 
+const siteConfig = {
+    businessName: "Brew & Co.",
+    tagline: "Coffee Made Exquisitely Better.",
+    description: "Explore Brew & Co.'s handcrafted coffee, delicious pastries, and signature drinks.",
+    menuHeading: "Our Best Sellers",
+    aboutHeading: "About Brew & Co.",
+    aboutText: "Located in the heart of Bacoor, Cavite, Brew & Co. was built around a simple idea: great coffee shouldn't feel rushed. Whether you're stopping by for a quick takeout iced Spanish latte, catching up with friends over coffee and pastries, or settling into a cozy corner to study or work, we serve freshly roasted espresso and homemade treats made to brighten your day.",
+    contactEmail: "",
+    location: "",
+    currency: "PHP",
+    footerText: "Brew & Co. — Website Demo"
+};
+
+function applyBranding() {
+    const elements = {
+        "site-brand": siteConfig.businessName,
+        "site-description": siteConfig.description,
+        "site-menu-heading": siteConfig.menuHeading,
+        "site-about-heading": siteConfig.aboutHeading,
+        "site-about-text": siteConfig.aboutText,
+        "site-footer": siteConfig.footerText
+    };
+
+    Object.entries(elements).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+
+        if (element) {
+            element.textContent = value;
+        }
+    });
+
+    // Preserve styled headline spans instead of replacing them with plain text.
+    const heroTitle = document.getElementById("site-tagline");
+    if (heroTitle) {
+        // Headline wording comes from the site configuration, with an italic accent.
+        heroTitle.replaceChildren();
+        const segments = siteConfig.tagline.split(/(Exquisitely)/i);
+        segments.forEach(segment => {
+            if (segment.toLowerCase() === "exquisitely") {
+                const accent = document.createElement("em");
+                accent.textContent = segment;
+                heroTitle.appendChild(accent);
+            } else if (segment) {
+                heroTitle.appendChild(document.createTextNode(segment));
+            }
+        });
+    }
+
+    document.title =
+        `${siteConfig.businessName} | Coffee & Pastries`;
+}
+
+const products = [
+    {
+        id: "americano",
+        name: "Americano",
+        price: 99,
+        category: "Coffee",
+        description: "Rich espresso with hot water.",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "cafe-latte",
+        name: "Cafe Latte",
+        price: 119,
+        category: "Coffee",
+        description: "Smooth espresso with steamed milk.",
+        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "caramel-macchiato",
+        name: "Caramel Macchiato",
+        price: 129,
+        category: "Coffee",
+        description: "Espresso, milk, and caramel.",
+        image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "mocha",
+        name: "Mocha",
+        price: 129,
+        category: "Coffee",
+        description: "Bold coffee, creamy chocolate.",
+        image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "spanish-latte",
+        name: "Spanish Latte",
+        price: 135,
+        category: "Coffee",
+        description: "Espresso with condensed and fresh milk.",
+        image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "matcha-latte",
+        name: "Matcha Latte",
+        price: 139,
+        category: "Coffee",
+        description: "Matcha with cold milk.",
+        image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "butter-croissant",
+        name: "Butter Croissant",
+        price: 85,
+        category: "Pastries",
+        description: "Flaky, golden-baked French pastry.",
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "choco-chip-cookie",
+        name: "Choco Chip Cookie",
+        price: 65,
+        category: "Pastries",
+        description: "Soft-baked cookie loaded with dark chocolate.",
+        image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        id: "blueberry-cheesecake",
+        name: "Blueberry Cheesecake",
+        price: 115,
+        category: "Pastries",
+        description: "A cheesecake with soft blueberry-tasting sweetness.",
+        image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTJ5y-PY8LyYjFCQNcWHhgRKE0x-NgzIfVIWA2jJstCV3cwTzpV"
+    },
+    {
+        id: "red-velvet-cake",
+        name: "Red Velvet Cake",
+        price: 125,
+        category: "Pastries",
+        description: "Soft cake with overwhelming sweetness.",
+        image: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_913/k%2FPhoto%2FSeries%2F2022-01_Recipe-Showdown_Red-Velvet-Cake%2F2022-01_Recipe-Showdown_Red-Velvet-Cake_King-Arthur-2022-01-20_ATK0067"
+    }
+];
+
+
 // Open shopping cart
 function openCart() {
     const cartDrawer = document.getElementById("cart-drawer");
@@ -344,6 +480,117 @@ document.getElementById("checkout-modal").addEventListener(
     }
 );
 
+
 // Initial cart display
 renderCart();
 
+
+function renderProducts() {
+    const menuGrid = document.getElementById("menu-grid");
+
+    if (!menuGrid) {
+        console.error("Menu grid not found.");
+        return;
+    }
+
+    menuGrid.replaceChildren();
+
+  const visibleProducts = products.filter(product => {
+    return activeCategory === "All" ||
+           product.category === activeCategory;
+});
+
+visibleProducts.forEach(product => {
+        // Create card
+        const card = document.createElement("div");
+        card.className = "menu-card";
+
+        // Create image
+        const image = document.createElement("img");
+        image.src = product.image;
+        image.alt = product.name;
+        image.width = 600;
+        image.height = 600;
+        image.loading = "lazy";
+        image.decoding = "async";
+
+        // Create product name
+        const title = document.createElement("h3");
+        title.textContent = product.name;
+
+        // Create description
+        const description = document.createElement("p");
+        description.textContent = product.description;
+
+        // Create price row
+        const priceRow = document.createElement("div");
+        priceRow.className = "price-row";
+
+        const price = document.createElement("strong");
+        price.textContent = `₱${product.price}`;
+
+        // Create Add to Order button
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "Add to Order";
+
+        button.addEventListener("click", () => {
+            addToOrder(product.name, product.price);
+        });
+
+        // Assemble the product card
+        priceRow.append(price, button);
+        card.append(image, title, description, priceRow);
+
+        // Add the completed card to the menu
+        menuGrid.appendChild(card);
+    });
+}
+
+let activeCategory = "All";
+
+function renderCategoryFilters() {
+    const container =
+        document.getElementById("category-filters");
+
+    if (!container) return;
+
+    const categories = [
+        "All",
+        ...new Set(products.map(product => product.category))
+    ];
+
+    container.replaceChildren();
+
+    categories.forEach(category => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.textContent = category;
+
+        const isActive = category === activeCategory;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+
+        button.addEventListener("click", () => {
+            activeCategory = category;
+            renderCategoryFilters();
+            renderProducts();
+        });
+
+        container.appendChild(button);
+    });
+}
+
+// Initialize the complete menu
+function initializeMenu() {
+    applyBranding();
+    renderCategoryFilters();
+    renderProducts();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeMenu);
+} else {
+    initializeMenu();
+}
