@@ -27,10 +27,44 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--color-background);
-    color: var(--color-text);
-    line-height: 1.6;
+    font-family: "DM Sans", sans-serif;
+}
+
+/* Headings */
+h1, h2, h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+/* Brand logo */
+.brand {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+/* Hero headline */
+.hero h1 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 1.12;
+    font-weight: 600;
+}
+
+/* Navigation and buttons */
+nav a,
+button,
+.hero-btn {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+}
+
+/* Product descriptions */
+.menu-card p {
+    font-family: "DM Sans", sans-serif;
+    line-height: 1.7;
 }
 
 /* Header */
